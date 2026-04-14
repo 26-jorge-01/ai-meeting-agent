@@ -24,6 +24,9 @@ graph TD
     I -- False --> O[QA Failed Output]
 ```
 
+## Visual Representation
+![n8n Workflow Architecture](images/n8n_workflow.png)
+
 ## Functional Components
 
 ### 1. Ingestion & Analysis

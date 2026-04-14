@@ -10,6 +10,9 @@ An enterprise-grade automation that transforms meeting transcripts into structur
 
 The **AI Meeting Presentation Agent** provides a "reliable, single-workflow" solution for analyzing discovery calls and generating slide decks. Built natively in **n8n**, it eliminates the need for maintaining custom code while providing a robust QA layer for executive-ready outputs.
 
+### Workflow Visualization
+![n8n Workflow Preview](docs/images/n8n_workflow.png)
+
 ### Key Logic
 1. **Meeting Analysis**: Extracts a structured business summary using GPT-4o-mini.
 2. **Slide Mapping**: Transforms the analysis into specific slide content.
