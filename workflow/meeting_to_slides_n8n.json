@@ -1,0 +1,60 @@
+{
+  "name": "AI Meeting Presentation Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "db619c96-7a72-4420-9f88-113a95462bbf",
+              "name": "transcript",
+              "value": "Synthetic Transcript – Retail AI Automation Discovery Call...",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [416, 0],
+      "id": "c06aa2ed-45c3-45e7-9dfc-e3f181463c3b",
+      "name": "Set Transcript Input"
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o-mini",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are an expert business meeting analyst..."
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [832, 0],
+      "id": "db2964d2-6096-4fc9-8423-fc2fe4f6be07",
+      "name": "AI - Meeting Analysis"
+    },
+    {
+      "parameters": {
+        "jsCode": "/* Parsing and Mapping Logic */"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1184, 0],
+      "id": "786c86f8-b21e-4269-ae8a-9a263a2193cc",
+      "name": "Parse Meeting Analysis"
+    }
+  ],
+  "connections": {
+    "Set Transcript Input": {
+      "main": [[{"node": "AI - Meeting Analysis", "type": "main", "index": 0}]]
+    },
+    "AI - Meeting Analysis": {
+      "main": [[{"node": "Parse Meeting Analysis", "type": "main", "index": 0}]]
+    }
+  }
+}

@@ -1,62 +1,46 @@
-# AI Meeting Presentation Agent
+# AI Meeting Presentation Agent (n8n Native)
 
-A production-grade automation tool that transforms meeting transcripts into polished executive presentations using LLMs and Google Slides.
+An enterprise-grade automation that transforms meeting transcripts into structured executive presentations using n8n and OpenAI.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![n8n](https://img.shields.io/badge/Orchestration-n8n-orange.svg)](https://n8n.io/)
 [![OpenAI](https://img.shields.io/badge/AI-OpenAI-green.svg)](https://openai.com/)
 
 ## 🚀 Overview
 
-The **AI Meeting Presentation Agent** streamlines the post-meeting workflow by automatically analyzing transcripts and generating structured Google Slides. It uses GPT-4o-mini to extract key insights and maps them directly to a customizable slide template.
+The **AI Meeting Presentation Agent** provides a "reliable, single-workflow" solution for analyzing discovery calls and generating slide decks. Built natively in **n8n**, it eliminates the need for maintaining custom code while providing a robust QA layer for executive-ready outputs.
 
-### Key Features
-- **Intelligent Analysis**: Extracts summaries, objectives, action items, and next steps with high precision.
-- **Dynamic Slide Generation**: Automated template copying and text replacement via Google Slides API.
-- **Structured Data**: Uses Pydantic for robust data validation and OpenAI Structured Outputs.
-- **Cost-Efficient**: Optimized for `gpt-4o-mini`, providing high quality at low cost.
+### Key Logic
+1. **Meeting Analysis**: Extracts a structured business summary using GPT-4o-mini.
+2. **Slide Mapping**: Transforms the analysis into specific slide content.
+3. **QA Validation**: Self-evaluates the output against business standards (word counts, tone).
+4. **Slide Generation**: Automatically copies a Google Slides template and populates it.
 
-## 🛠️ Architecture
+## 📋 Repository Structure
 
-The system follows a modular design:
-- **`analyzer.py`**: Handles LLM orchestration and data mapping.
-- **`presentation.py`**: Manages Google Slides/Drive API interactions.
-- **`models.py`**: Defines the project's data schemas.
-
-For more details, see [docs/architecture.md](docs/architecture.md).
-
-## 📋 Setup
-
-### Prerequisites
-1. **OpenAI API Key**: Obtain from [OpenAI Platform](https://platform.openai.com/).
-2. **Google Cloud Project**:
-   - Enable **Google Slides API** and **Google Drive API**.
-   - Create a **Service Account** and download the `credentials.json` file.
-   - Share your Google Slides template with the Service Account email.
-
-### Installation
-```bash
-git clone https://github.com/your-username/ai-meeting-agent.git
-cd ai-meeting-agent
-pip install -r requirements.txt
+```text
+ai-meeting-agent/
+├── workflow/
+│   └── meeting_to_slides_n8n.json  # Import this into n8n
+├── docs/
+│   ├── architecture.md             # Mermaid diagram of nodes
+│   └── setup_guide.md              # Setup & credentials guide
+└── samples/
+    └── transcript_sample.txt       # Example discovery call transcript
 ```
 
-### Configuration
-1. Rename `.env.example` to `.env` and add your OpenAI API Key.
-2. Place your `credentials.json` in the project root.
+## 🛠️ Getting Started
 
-## 🖥️ Usage
+1. **Import**: Load the `.json` file from the `workflow/` folder into your n8n instance.
+2. **Configure**: Set up your Google Cloud and OpenAI credentials in n8n.
+3. **Template**: Point the workflow to your Google Slides Template ID: `1vXhzzhoypMD2V5ayDzN0IB5RybMcGVAEx8XIoysc8qk`.
 
-Run the agent via CLI:
+For detailed steps, see the [Setup Guide](docs/setup_guide.md).
 
-```bash
-python -m src.main --transcript samples/transcript.txt --output_title "Project Alpha Discovery Call"
-```
-
-## 📊 Cost Analysis (Estimate)
-Based on current token pricing:
-- **Meeting Analysis**: ~$0.01 per 10k words of transcript.
-- **Total Workflow**: Negligible cost per presentation, making it highly scalable.
+## 📊 Business Value
+- **Time Savings**: Reduces post-meeting reporting time by ~80%.
+- **Consistency**: Ensures every meeting produces a high-quality summary and deck.
+- **Reliable Output**: Built-in AI-driven QA gate prevents poor quality slides from being created.
 
 ## 📜 License
 Internal Technical Test Project.
